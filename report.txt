@@ -1,0 +1,115 @@
+# Application Analysis Report
+
+## Overview
+This is a Next.js-based web application with user authentication and dashboard functionality. The application appears to be a starter template or early-stage project with authentication flows and basic routing set up.
+
+## Key Features
+
+### 1. Authentication System
+- Email/password based authentication
+- Protected routes
+- Role-based access control
+- CSRF protection using Laravel Sanctum
+- Session management using JWT tokens
+
+### 2. User Interface
+- Responsive design
+- Form validation using Zod
+- Client-side form handling with React Hook Form
+- Protected dashboard view
+
+### 3. State Management
+- Global state management using Zustand
+- Authentication state persistence
+
+## Folder Structure
+
+```
+burondwa/
+├── app/                          # Main application directory
+│   ├── (auth)/                   # Authentication routes
+│   │   └── login/               # Login page
+│   │       └── page.tsx          # Login component
+│   ├── components/               # Reusable UI components
+│   ├── contexts/                 # React contexts
+│   ├── dashboard/                # Protected dashboard area
+│   │   ├── layout.tsx            # Dashboard layout
+│   │   └── page.tsx              # Dashboard main page
+│   ├── hooks/                    # Custom React hooks
+│   │   ├── useAuth.ts            # Authentication hook
+│   │   └── useFetch.ts           # Data fetching hook
+│   ├── inventory/                # Inventory management
+│   ├── lib/                      # Utility functions and configs
+│   │   ├── api.ts                # API configuration
+│   │   └── constants.ts          # Application constants
+│   ├── store/                    # State management
+│   │   └── useAuthStore.ts       # Authentication store
+│   ├── types/                    # TypeScript type definitions
+│   │   └── api.ts                # API type definitions
+│   ├── globals.css               # Global styles
+│   ├── layout.tsx                # Root layout
+│   └── page.tsx                  # Home page (redirects to login)
+├── public/                       # Static assets
+│   ├── file.svg
+│   ├── globe.svg
+│   ├── next.svg
+│   ├── vercel.svg
+│   └── window.svg
+├── node_modules/                 # Dependencies
+├── .eslintrc.json               # ESLint configuration
+├── next.config.js               # Next.js configuration
+├── package.json                 # Project dependencies and scripts
+├── postcss.config.js            # PostCSS configuration
+└── tsconfig.json               # TypeScript configuration
+```
+
+## Technical Stack
+
+### Frontend
+- **Framework**: Next.js 13+ (App Router)
+- **Language**: TypeScript
+- **Styling**: CSS Modules/Tailwind CSS
+- **State Management**: Zustand
+- **Form Handling**: React Hook Form with Zod validation
+- **HTTP Client**: Axios
+
+### Backend Integration
+- **API**: RESTful API (Laravel backend based on the CSRF endpoint)
+- **Authentication**: Laravel Sanctum for session-based auth
+- **CORS**: Configured for cross-origin requests
+
+## Authentication Flow
+1. User visits the root URL and is redirected to `/login`
+2. User submits login form with email and password
+3. Frontend first requests a CSRF cookie from `/sanctum/csrf-cookie`
+4. After receiving the CSRF cookie, the login request is sent to `/login`
+5. On successful authentication, user is redirected to `/dashboard`
+6. The dashboard checks for a valid token and redirects to login if not authenticated
+
+## Available Scripts
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm start` - Start production server
+- `npm run lint` - Run ESLint
+
+## Dependencies
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Axios
+- React Hook Form
+- Zod
+- Zustand
+
+## Environment Requirements
+- Node.js (version 14+ recommended)
+- npm or yarn
+- Backend API server (Laravel with Sanctum)
+
+## Setup Instructions
+1. Clone the repository
+2. Run `npm install` to install dependencies
+3. Create a `.env` file with required environment variables
+4. Run `npm run dev` to start the development server
+5. The application will be available at `http://localhost:3000`
